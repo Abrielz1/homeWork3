@@ -5,7 +5,7 @@ public class Node {
    private final Service service = new Service();
 
    public void log() {
-       service.getCount().incrementAndGet();
+       service.getCount().get();
        service.getLogList().add(
                Thread.currentThread().getName());
 
@@ -13,7 +13,7 @@ public class Node {
 
     void debug() {
        StringBuffer buffer = new StringBuffer();
-       buffer.append(service.getCount().get()
+       buffer.append(service.getCount().incrementAndGet()
 
        );
         System.out.println("000 " + buffer);
