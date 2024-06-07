@@ -18,7 +18,8 @@ public class Node {
        );
         System.out.println("000 " + buffer);
         StringBuffer stringBuffer = new StringBuffer();
-        buffer.append(service.getLogList());
+        int count = 0;
+        buffer.append(service.getLogList().get(count++));
 
         System.out.println("111 " + stringBuffer);
     }
