@@ -4,7 +4,7 @@ public class Node {
 
    private final Service service = new Service();
 
-   public synchronized void log() {
+   public void log() {
        service.getCount().incrementAndGet();
        service.getLogList().add(
                Thread.currentThread().getName());
