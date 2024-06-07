@@ -6,7 +6,7 @@ public class Node {
 
    public synchronized void log() {
        service.getCount().incrementAndGet();
-       service.getLogList().add(service.getLogList().size(),
+       service.getLogList().add(
                Thread.currentThread().getName());
 
     }
@@ -18,8 +18,7 @@ public class Node {
        );
         System.out.println("000 " + buffer);
         StringBuffer stringBuffer = new StringBuffer();
-        int count = 0;
-        buffer.append(service.getLogList().get(count++));
+        buffer.append(service.getLogList().getLast());
 
         System.out.println("111 " + stringBuffer);
     }
