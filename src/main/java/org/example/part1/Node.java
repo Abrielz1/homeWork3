@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
-public class Node extends Thread {
+public class Node {
 
     private String name;
 
@@ -13,29 +13,21 @@ public class Node extends Thread {
 
 
    public void log() {
-       service.getCount().get();
+      int i = service.getCount().incrementAndGet();
        service.getLogList().add(
-               Thread.currentThread().getName());
+             name + " " + i + " " + Thread.currentThread().getName());
 
     }
 
     void debug() {
        StringBuffer buffer = new StringBuffer();
-       buffer.append(service.getCount().incrementAndGet()
+       buffer.append(service.getCount().get()
 
        );
-        System.out.println("000 " + buffer);
+        System.out.println("counter is: " + buffer);
         StringBuffer stringBuffer = new StringBuffer();
-        buffer.append(service.getLogList().getLast());
+        stringBuffer.append(service.getLogList().getLast());
 
-        System.out.println("111 " + stringBuffer);
-    }
-
-    @Override
-    public void run() {
-        for (int i = 0; i < 4; i++) {
-            this.log();
-            this.debug();
-        }
+        System.out.println("thread is:" + stringBuffer);
     }
 }
