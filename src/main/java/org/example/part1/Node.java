@@ -1,8 +1,16 @@
 package org.example.part1;
 
-public class Node {
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+public class Node extends Thread {
+
+    private String name;
 
    private final Service service = new Service();
+
 
    public void log() {
        service.getCount().get();
@@ -21,5 +29,13 @@ public class Node {
         buffer.append(service.getLogList().getLast());
 
         System.out.println("111 " + stringBuffer);
+    }
+
+    @Override
+    public void run() {
+        for (int i = 0; i < 4; i++) {
+            this.log();
+            this.debug();
+        }
     }
 }
