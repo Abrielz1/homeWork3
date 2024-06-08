@@ -11,7 +11,6 @@ public class Node {
 
    private final Service service = new Service();
 
-
    public void log() {
       int i = service.getCount().incrementAndGet();
        service.getLogList().add(i + " " + Thread.currentThread().getName());
