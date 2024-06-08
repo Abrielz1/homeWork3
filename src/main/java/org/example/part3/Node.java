@@ -2,7 +2,6 @@ package org.example.part3;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;
@@ -12,20 +11,19 @@ import java.util.concurrent.locks.ReentrantLock;
 public class Node {
 
     private int counter = 0;
-
     private final List<String> logList = new LinkedList<>();
 
+    ReentrantLock lock1 = new ReentrantLock();
 
-    ReentrantLock lock = new ReentrantLock();
+    ReentrantLock lock2 = new ReentrantLock();
 
    public void log() {
-       try {
-           lock.lock();
-          int i = counter++;
-           logList.add(i + " " + Thread.currentThread().getName());
-      } finally {
-        lock.unlock();
-      }
+       lock1.lock();
+       ++counter;
+       lock2.lock();
+       logList.add(Thread.currentThread().getName());
+       lock1.unlock();
+       lock2.unlock();
     }
 
     void debug() {
